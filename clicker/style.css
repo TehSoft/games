@@ -1,0 +1,216 @@
+/* ==========================================
+   1. ALAPBEÁLLÍTÁSOK
+   ========================================== */
+html, body {
+    height: 100%;             
+    margin: 0;
+    background-color: #000000; /* Fekete háttér */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;          /* Megakadályozza az indokolatlan görgetést */
+}
+
+.teljes-oldal {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;            /* A teljes oldal pontosan 1 képernyő magas */
+    padding-top: 20px;        /* Felső távolság a fejléc felett */
+    box-sizing: border-box;
+}
+
+header {
+    flex: 0 0 auto;           /* A fejléc nem nyúlik, megtartja a saját méretét */
+    text-align: center;
+    margin-bottom: 20px;      
+}
+
+/* A fejléc formázása a kék aláhúzással együtt */
+h1 {
+    color: #ffffff;                    /* Fehér betűszín */
+    border-bottom: 2px solid #3498db;  /* Szép kék aláhúzás */
+    padding-bottom: 10px;              /* Távolság a betűk és a vonal között */
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+
+/* ==========================================
+   2. ELRENDEZÉS: JAVÍTOTT, SEHOL SEM KILÓGÓ GRID
+   ========================================== */
+.Container {
+    display: grid; 
+    grid-template-columns: 7fr 3fr; 
+    gap: 40px;                      
+    
+    /* JAVÍTÁS JOBB OLDALRA: Az auto szélesség befelé kényszeríti a 40px paddinget, */
+    /* így a jobb oldali panel sem fog kilógni a képernyőről */
+    width: auto;              
+    box-sizing: border-box;   
+    padding: 0 40px;                
+    
+    /* JAVÍTÁS A MAGASSÁGRA (HEADER ÉS ALSÓ MARGÓ): */
+    flex: 1;                  /* Kitölti az ÖSSZES maradék helyet a header alatt lefelé */
+    margin-bottom: 40px;      /* PONTOSAN 40px távolság marad a képernyő aljától */
+    min-height: 0;            /* Fontos: engedi a rácsnak, hogy zsugorodjon, ha kell */
+}
+
+/* Bal oldal stílusa */
+.bal-oldal {
+    box-sizing: border-box;
+    background-color: #d1dae8;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+/* Jobb oldali panel stílusa */
+.jobb-panel {
+    box-sizing: border-box;
+    background-color: #7490B9;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+
+/* ==========================================
+   3. A TE ZÖLD FŐGOMBI FORMÁZÁSOD
+   ========================================== */
+.főgomb {
+    background-color: #2ecc71;   /* Zöld háttér */
+    color: white;                /* Fehér szövegszín */
+    border: none;                /* Keret eltávolítása */
+    padding: 20px 40px;          /* Megnövelt belső margó a nagy térhez */
+    font-size: 24px;             /* Megnövelt betűméret a nagy térhez */
+    border-radius: 5px;          /* Lekerekített sarkok */
+    cursor: pointer;             /* Egérmutató kéz alakú lesz felette */
+    transition: background 0.3s, transform 0.1s; /* Animáció effekt */
+    margin: 20px 0;
+}
+
+.főgomb:hover {
+    background-color: #27ae60;   /* Sötétebb zöld */
+}
+
+.főgomb:active {
+    transform: scale(0.95);      /* Kattintáskor egy kicsit benyomódik */
+}
+
+.szöveg {
+    font-size: 22px;             /* Kicsit nagyobb Pontok szöveg */
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+
+/* ==========================================
+   4. A TE PIROS FEJLESZTÉSI GOMBJAID
+   ========================================== */
+.szorzógomb, .autoclickgomb {
+    box-sizing: border-box;      /* ÚJ JAVÍTÁS: Beleszámolja a paddinget a gomb szélességébe, így NEM fog kilógni! */
+    background-color: #ff4d4d;   
+    color: white;                
+    border: none;                
+    font-size: 16px;             
+    padding: 12px 20px;          
+    border-radius: 5px;          
+    cursor: pointer;             
+    width: 100%;                 /* Kitölti a jobb oldali panel belső szélességét */
+    transition: background-color 0.3s, transform 0.1s; 
+}
+
+
+.szorzógomb:hover, .autoclickgomb:hover {
+    background-color: #e60000;   /* Sötétebb piros lebegéskor */
+}
+
+.szorzógomb:active, .autoclickgomb:active {
+    transform: scale(0.98);      /* Kattintáskor egy picit ez is benyomódik */
+}
+
+.szorzógomb:disabled, .autoclickgomb:disabled {
+    background-color: #95a5a6;
+    color: #d1dae8;
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;             /* Letiltva nem nyomódik be */
+}
+/* ==========================================
+   5. RESET GOMB A BAL PANEL ALJAN
+   ========================================== */
+.reset-sor {
+    width: 100%;
+    text-align: left;          /* Bal alsó sarokba igazítja a kártyán belül */
+    margin-top: auto;          /* Lefele tolja a gombot a kártya legalsó szélére */
+    padding-top: 20px;
+}
+
+.resetgomb {
+    background-color: #7f8c8d;
+    color: white;
+    border: none;
+    
+    /* JAVÍTÁS: Kisebb belső margó és betűméret, hogy finomabb legyen a gomb */
+    padding: 6px 16px;       
+    font-size: 13px;
+    text-transform: uppercase; /* CSUPANAGYBETŰS, hogy kis méretben is elegáns legyen */
+    letter-spacing: 1px;       /* Kicsit széthúzott betűk */
+    
+    border-radius: 4px;        
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s, opacity 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.resetgomb:hover {
+    background-color: #95a5a6;
+}
+
+.resetgomb:active {
+    transform: scale(0.95);    
+}
+
+/* ==========================================
+   6. MOBILBARÁT NÉZET
+   ========================================== */
+@media (max-width: 768px) {
+    .Container {
+        flex-direction: column; 
+        padding: 0 20px;
+        gap: 20px;
+    }
+    .jobb-panel {
+        flex: 1 1 auto;
+        width: 100%;            
+    }
+}
+/* ==========================================
+   7. KATTINTÁSI EFFEKTUS (PLUSSZ PONTOK ANIMÁCIÓJA)
+   ========================================== */
+.LebegoPont {
+    position: absolute;
+    color: #2ecc71;          /* Szép zöld szín, mint a főgomb */
+    font-size: 24px;
+    font-weight: bold;
+    pointer-events: none;    /* Biztosítja, hogy ne lehessen rákattintani a számra */
+    user-select: none;
+    animation: szall-es-tunik 0.8s ease-out forwards;
+    z-index: 100;
+}
+
+@keyframes szall-es-tunik {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-60px) scale(0.8); /* Felfelé száll és összezsugorodik */
+    }
+}
